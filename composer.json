@@ -13,7 +13,7 @@
         "php": ">=5.4.0"
     },
     "autoload": {
-        "ps4-4": {
+        "psr-4": {
             "Voce\\PluginLoader\\": ""
         }
     }
