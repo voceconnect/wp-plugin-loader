@@ -9,18 +9,18 @@ class PluginLoader {
 	private $vendor_directories;
 
 	public function __construct() {
-		$this->vendor_directories = [];
+		$this->vendor_directories = [ ];
 	}
 
 	public function registerHooks() {
-		if(defined('WP_PLUGIN_DIR') && !has_action(self::LOAD_ACTION)) {
-			$this->vendor_directories[] = WP_PLUGIN_DIR;
+		if ( defined( 'WP_PLUGIN_DIR' ) && !has_action( self::LOAD_ACTION ) ) {
+			$this->vendor_directories[] = trailingslashit( WP_PLUGIN_DIR );
 		}
 
-		add_action(self::LOAD_ACTION, [$this, 'loadPlugin'], 10, 2);
-		add_filter('plugins_url', [$this, 'filterPluginsURL'], 10, 3);
+		add_action( self::LOAD_ACTION, [$this, 'loadPlugin' ], 10, 2 );
+		add_filter( 'plugins_url', [$this, 'filterPluginsURL' ], 10, 3 );
 	}
-	
+
 	public function registerVendorDirectory( $directory ) {
 		$this->vendor_directories[] = trailingslashit( $directory );
 		return $this;
@@ -41,7 +41,7 @@ class PluginLoader {
 
 	public function filterPluginsURL( $url, $path, $plugin ) {
 		//core plugin directories are handled by default.
-		if ( empty($plugin) || strpos( $url, WPMU_PLUGIN_URL ) === 0 || strpos( WP_PLUGIN_DIR, $plugin ) === 0 ) {
+		if ( empty( $plugin ) || strpos( $url, WPMU_PLUGIN_URL ) === 0 || strpos( WP_PLUGIN_DIR, $plugin ) === 0 ) {
 			return $url;
 		}
 
@@ -77,4 +77,5 @@ class PluginLoader {
 		}
 		return $url;
 	}
+
 }
