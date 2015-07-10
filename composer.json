@@ -1,0 +1,20 @@
+{
+    "name": "voceconnect/wp-plugin-loader",
+    "description": "A simplified interface to insure that a WordPress plugin has been loaded",
+    "type": "library",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Michael Pretty",
+            "email": "mpretty@voceconnect.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "ps4-4": {
+            "Voce\\PluginLoader\\": ""
+        }
+    }
+}
